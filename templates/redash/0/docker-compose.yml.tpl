@@ -113,7 +113,7 @@ services:
     restart: unless-stopped
     depends_on:
       - redashdb
-{{ - end }}
+{{- end }}
   mysql:
     image: kakakakakku/mysql-57-world-database
     labels:
