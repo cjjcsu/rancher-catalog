@@ -1,7 +1,106 @@
 .catalog:
-  name: # Name of the versioned template of the Catalog Entry
-  version: # Version of the versioned template of the Catalog Entry
-  description: # Description of the versioned template of the Catalog Entry
-  uuid: # Unique identifier to be used for upgrades. Please see note.
-  minimum_rancher_version: # The minimum version of Rancher that supports the template
-  questions: #Used to request user input for configuration options
+  name: "redash"
+  version: "0"
+  description: "redash v3.0.0.b3134"
+  uuid: "redash-3.0.0-rancher"
+  minimum_rancher_version: "v1.6.0"
+  questions:
+    - variable: "USE_HTTP_PROXY"
+      label: "Use HTTP_PROXY?"
+      required: true
+      default: false
+      type: boolean
+
+    - variable: "ADD_PG_CONTAINER"
+      label: "Add PostgreSQL Container?"
+      required: true
+      default: true
+      type: boolean
+
+    - variable: "HTTP_PROXY"
+      label: "HTTP_PROXY"
+      description: "HTTP_PROXY"
+      required: false
+      type: "string"
+      default: "http://xx.xx.xx.xx:9999"
+    - variable: "HTTPS_PROXY"
+      label: "HTTPS_PROXY"
+      description: "HTTPS_PROXY"
+      required: false
+      type: "string"
+      default: "http://xx.xx.xx.xx:9999"
+    - variable: "NO_PROXY"
+      label: "NO_PROXY"
+      description: "NO_PROXY"
+      required: false
+      type: "string"
+      default: "local,127.0.0.1"
+
+    - variable: "REDASH_STATSD_HOST"
+      label: "REDASH_STATSD_HOST"
+      description: "127.0.0.1"
+      required: true
+      type: "string"
+      default: "127.0.0.1"
+    - variable: "REDAH_HTTP_PORT"
+      description: "public port to access redash site"
+      label: "Public Port"
+      required: true
+      default: 8080
+      type: "int"
+      
+    - variable: "REDASH_COOKIE_SECRET"
+      label: "redash cookies secret"
+      description: "Cookie"
+      required: true
+      type: "string"
+      default: "veryveryveryveryverysecret"
+
+    - variable: "REDASH_DB_USER"
+      label: "redash DB user"
+      description: "redash DB user"
+      required: true
+      type: "string"
+      default: "postgres"
+    - variable: "REDASH_DB_PW"
+      label: "redash DB Password"
+      description: "redash DB Password"
+      required: true
+      type: "string"
+      default: "pass0000"
+    - variable: "REDASH_DB_NAME"
+      label: "redash DB name"
+      description: "redash DB name"
+      required: true
+      type: "string"
+      default: "postgres"
+
+    - variable: "PGADMIN_DEF_EMAIL"
+      label: "pgAdmin4 user name"
+      description: "pgAdmin4 user name(e-mail)"
+      required: true
+      type: "string"
+      default: "admin@hoge.com"
+    - variable: "PGADMIN_DEF_PW"
+      label: "pgAdmin4 user password"
+      description: "pgAdmin4 user password"
+      required: true
+      type: "string"
+      default: "pass0000"
+    - variable: "PGADMIN_HTTP_PORT"
+      description: "public port to access pgAdmin4 site"
+      label: "Public Port"
+      required: true
+      default: 8180
+      type: "int"
+
+    - variable: "VOLUME_DRIVER"
+      description: 
+       For PostgreSQL Volume driver to use with this service.
+      label: "Volume driver"
+      required: false
+      default: "local"
+      type: enum
+      options:
+        - local
+        - rancher-nfs
