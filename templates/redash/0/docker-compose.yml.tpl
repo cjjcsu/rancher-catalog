@@ -114,12 +114,14 @@ services:
     depends_on:
       - redashdb
 {{- end }}
+{{- if eq .Values.ADD_SAMPLE_DATASET "true" }}
   mysql:
     image: kakakakakku/mysql-57-world-database
     labels:
       io.rancher.container.hostname_override: container_name
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+{{- end }}
 {{- if eq .Values.ADD_PG_CONTAINER "true" }}
 volumes:
   redash-pgdata:

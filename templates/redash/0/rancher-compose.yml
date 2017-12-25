@@ -10,9 +10,13 @@
       required: true
       default: false
       type: boolean
-
     - variable: "ADD_PG_CONTAINER"
       label: "Add PostgreSQL Container?"
+      required: true
+      default: true
+      type: boolean
+    - variable: "ADD_SAMPLE_DATASET"
+      label: "Add Sample DataSet?"
       required: true
       default: true
       type: boolean
