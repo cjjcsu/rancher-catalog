@@ -56,6 +56,12 @@
       type: "string"
       default: "veryveryveryveryverysecret"
 
+    - variable: "REDASH_DB_HOST"
+      label: "redash DB Host"
+      description: "redash DB Host Name"
+      required: true
+      type: "string"
+      default: "redashdb"
     - variable: "REDASH_DB_USER"
       label: "redash DB user"
       description: "redash DB user"
