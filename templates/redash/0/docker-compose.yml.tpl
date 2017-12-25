@@ -126,6 +126,8 @@ services:
 volumes:
   redash-pgdata:
     driver: ${VOLUME_DRIVER}
+    external: true
   pgadmin-data:
     driver: ${VOLUME_DRIVER}
+    external: true
 {{- end }}
