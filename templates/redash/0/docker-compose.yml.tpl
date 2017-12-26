@@ -3,7 +3,9 @@ services:
   server:
     image: redash/redash:3.0.0.b3134
     labels:
+    {{- if eq .Values.INIT_REDASH_DB "true" }}
       io.rancher.sidekicks: server-init
+    {{- end }}
       io.rancher.container.hostname_override: container_name
     command: server
     depends_on:
@@ -28,6 +30,7 @@ services:
       REDASH_DATABASE_URL: "postgresql://${REDASH_DB_USER}:${REDASH_DB_PW}@${REDASH_DB_HOST}/${REDASH_DB_NAME}"
       REDASH_COOKIE_SECRET: ${REDASH_COOKIE_SECRET}
       REDASH_WEB_WORKERS: 4
+{{- if eq .Values.INIT_REDASH_DB "true" }}
   server-init:
     image: redash/redash:3.0.0.b3134
     labels:
@@ -55,6 +58,7 @@ services:
       REDASH_DATABASE_URL: "postgresql://${REDASH_DB_USER}:${REDASH_DB_PW}@${REDASH_DB_HOST}/${REDASH_DB_NAME}"
       REDASH_COOKIE_SECRET: ${REDASH_COOKIE_SECRET}
       REDASH_WEB_WORKERS: 4
+{{- end }}
   worker:
     image: redash/redash:3.0.0.b3134
     labels:

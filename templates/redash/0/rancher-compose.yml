@@ -20,6 +20,11 @@
       required: true
       default: true
       type: boolean
+    - variable: "INIT_REDASH_DB"
+      label: "Initialize the database"
+      required: true
+      default: false
+      type: boolean
 
     - variable: "HTTP_PROXY"
       label: "HTTP_PROXY"
