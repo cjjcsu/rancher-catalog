@@ -60,7 +60,7 @@ services:
       REDASH_WEB_WORKERS: 4
 {{- end }}
   worker:
-    image: redash/redash:3.0.0.b3134
+    image: redash/redash:${REDASH_IMAGE_VERSION}
     labels:
       io.rancher.container.hostname_override: container_name
     command: scheduler
