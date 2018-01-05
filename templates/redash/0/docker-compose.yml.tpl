@@ -16,6 +16,7 @@ services:
     ports:
       - "5000:5000"
     environment:
+      TZ: ${MY_TIMEZONE}
     {{- if eq .Values.USE_HTTP_PROXY "true" }}
       HTTP_PROXY: ${HTTP_PROXY}
       HTTPS_PROXY: ${HTTPS_PROXY}
@@ -57,6 +58,7 @@ services:
     ports:
       - "5100:5000"
     environment:
+      TZ: ${MY_TIMEZONE}
     {{- if eq .Values.USE_HTTP_PROXY "true" }}
       HTTP_PROXY: ${HTTP_PROXY}
       HTTPS_PROXY: ${HTTPS_PROXY}
@@ -91,6 +93,7 @@ services:
       io.rancher.container.hostname_override: container_name
     command: scheduler
     environment:
+      TZ: ${MY_TIMEZONE}
     {{- if eq .Values.USE_HTTP_PROXY "true" }}
       HTTP_PROXY: ${HTTP_PROXY}
       HTTPS_PROXY: ${HTTPS_PROXY}
@@ -119,6 +122,7 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
     environment:
+      TZ: ${MY_TIMEZONE}
       POSTGRES_USER: ${REDASH_DB_USER}
       POSTGRES_PASSWORD: ${REDASH_DB_PW}
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --no-locale --data-checksums"
@@ -134,8 +138,9 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
     environment:
-        PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEF_EMAIL}"
-        PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEF_PW}"
+      TZ: ${MY_TIMEZONE}
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEF_EMAIL}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEF_PW}"
     volumes:
        - pgadmin-data:/root/.pgadmin
     ports:
@@ -150,6 +155,7 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
     environment:
+      TZ: ${MY_TIMEZONE}
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 {{- end }}
 {{- if eq .Values.ADD_PG_CONTAINER "true" }}

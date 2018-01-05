@@ -26,6 +26,13 @@
       default: false
       type: boolean
 
+    - variable: "MY_TIMEZONE"
+      label: "TimeZone"
+      description: "Specify Timezone(default JST-9)"
+      required: false
+      type: "string"
+      default: "JST-9"
+
     - variable: "HTTP_PROXY"
       label: "HTTP_PROXY"
       description: "HTTP_PROXY"
