@@ -1,7 +1,7 @@
 version: '2'
 services:
   server:
-    image: redash/redash:3.0.0.b3134
+    image: redash/redash:${REDASH_IMAGE_VERSION}
     labels:
     {{- if eq .Values.INIT_REDASH_DB "true" }}
       io.rancher.sidekicks: server-init

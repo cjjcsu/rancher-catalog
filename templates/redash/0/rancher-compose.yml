@@ -90,6 +90,13 @@
       type: "string"
       default: "postgres"
 
+    - variable: "REDASH_IMAGE_VERSION"
+      label: "redash container image Version"
+      description: "Specify a version of the redash container to pull (default will pull 3.0.0.b3134)."
+      required: true
+      type: "string"
+      default: "3.0.0.b3134"
+
     - variable: "PGADMIN_DEF_EMAIL"
       label: "pgAdmin4 user name"
       description: "pgAdmin4 user name(e-mail)"
