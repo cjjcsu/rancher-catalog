@@ -47,7 +47,26 @@
 
     - variable: "REDASH_STATSD_HOST"
       label: "REDASH_STATSD_HOST"
-      description: "127.0.0.1"
+      description: "Host name of StatsD of Graphite Client"
+      required: false
+      type: "string"
+      default: "127.0.0.1"
+    - variable: "REDASH_STATSD_PORT"
+      label: "REDASH_STATSD_PORT"
+      description: "REDASH_STATSD_PORT"
+      required: false
+      type: "int"
+      default: "8125"
+    - variable: "REDASH_STATSD_PREFIX"
+      label: "REDASH_STATSD_PREFIX"
+      description: "REDASH_STATSD_PREFIX"
+      required: false
+      type: "string"
+      default: "redash"
+
+    - variable: "REDASH_HOST"
+      label: "REDASH_HOST"
+      description: "REDASH_HOST"
       required: true
       type: "string"
       default: "127.0.0.1"
@@ -57,7 +76,87 @@
       required: true
       default: 8080
       type: "int"
-      
+  
+    - variable: "REDASH_DATE_FORMAT"
+      label: "REDASH_DATE_FORMAT"
+      description: "REDASH_DATE_FORMAT"
+      required: false
+      type: "string"
+      default: "YY/MM/DD"
+    - variable: "REDASH_ALLOW_SCRIPTS_IN_USER_INPUT"
+      label: "REDASH_ALLOW_SCRIPTS_IN_USER_INPUT"
+      description: "REDASH_ALLOW_SCRIPTS_IN_USER_INPUT"
+      required: false
+      type: "string"
+      default: "false"
+    - variable: "ALLOW_PARAMETERS_IN_EMBEDS"
+      label: "ALLOW_PARAMETERS_IN_EMBEDS"
+      description: "ALLOW_PARAMETERS_IN_EMBEDS"
+      required: false
+      type: "string"
+      default: "false"
+    - variable: "REDASH_LOG_STDOUT"
+      label: "REDASH_LOG_STDOUT"
+      description: "REDASH_LOG_STDOUT"
+      required: false
+      type: "string"
+      default: "false"
+
+    - variable: "REDASH_MAIL_SERVER"
+      label: "REDASH_MAIL_SERVER"
+      description: "REDASH_MAIL_SERVER"
+      required: false
+      type: "string"
+      default: "localhost"
+    - variable: "REDASH_MAIL_PORT"
+      description: "REDASH_MAIL_PORT"
+      label: "REDASH_MAIL_PORT"
+      required: true
+      default: 25
+      type: "int"
+    - variable: "REDASH_MAIL_USE_TLS"
+      label: "REDASH_MAIL_USE_TLS"
+      description: "REDASH_MAIL_USE_TLS"
+      required: false
+      type: "string"
+      default: "false"
+    - variable: "REDASH_MAIL_USE_SSL"
+      label: "REDASH_MAIL_USE_SSL"
+      description: "REDASH_MAIL_USE_SSL"
+      required: false
+      type: "string"
+      default: "false"
+    - variable: "REDASH_MAIL_USE_SSL"
+      label: "REDASH_MAIL_USE_SSL"
+      description: "REDASH_MAIL_USE_SSL"
+      required: false
+      type: "string"
+      default: "false"
+    - variable: "REDASH_MAIL_USERNAME"
+      label: "REDASH_MAIL_USERNAME"
+      description: "REDASH_MAIL_USERNAME"
+      required: false
+      type: "string"
+      default: ""
+    - variable: "REDASH_MAIL_PASSWORD"
+      label: "REDASH_MAIL_PASSWORD"
+      description: "REDASH_MAIL_PASSWORD"
+      required: false
+      type: "string"
+      default: ""
+    - variable: "REDASH_MAIL_DEFAULT_SENDER"
+      label: "REDASH_MAIL_DEFAULT_SENDER"
+      description: "REDASH_MAIL_DEFAULT_SENDER"
+      required: false
+      type: "string"
+      default: ""
+    - variable: "REDASH_MAIL_ASCII_ATTACHMENTS"
+      label: "REDASH_MAIL_ASCII_ATTACHMENTS"
+      description: "REDASH_MAIL_ASCII_ATTACHMENTS"
+      required: false
+      type: "string"
+      default: "false"
+
     - variable: "REDASH_COOKIE_SECRET"
       label: "redash cookies secret"
       description: "Cookie"
