@@ -1,6 +1,6 @@
 .catalog:
   name: "redash"
-  version: "0"
+  version: "0.1.0"
   description: "redash v3.0.0.b3134"
   uuid: "redash-3.0.0-rancher"
   minimum_rancher_version: "v1.6.0"
@@ -83,7 +83,7 @@
       required: true
       default: 8080
       type: "int"
-  
+
     - variable: "REDASH_DATE_FORMAT"
       label: "REDASH_DATE_FORMAT"
       description: "REDASH_DATE_FORMAT"
@@ -223,7 +223,7 @@
       type: "int"
 
     - variable: "VOLUME_DRIVER"
-      description: 
+      description:
        For PostgreSQL Volume driver to use with this service.
       label: "Volume driver"
       required: false
