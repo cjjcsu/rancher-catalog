@@ -14,7 +14,7 @@ services:
     {{- end }}
       - redis
     ports:
-      - "5000:5000"
+      - "${REDASH_HOST_PORT}:5000"
     environment:
       TZ: ${MY_TIMEZONE}
     {{- if eq .Values.USE_HTTP_PROXY "true" }}
@@ -46,7 +46,7 @@ services:
       REDASH_MAIL_ASCII_ATTACHMENTS: ${REDASH_MAIL_ASCII_ATTACHMENTS}
 {{- if eq .Values.INIT_REDASH_DB "true" }}
   server-init:
-    image: redash/redash:3.0.0.b3134
+    image: redash/redash:${REDASH_IMAGE_VERSION}
     labels:
       io.rancher.container.start_once: true
     command: create_db

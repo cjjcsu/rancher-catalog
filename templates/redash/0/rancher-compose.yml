@@ -1,6 +1,6 @@
 .catalog:
   name: "redash"
-  version: "0"
+  version: "0.1.0"
   description: "redash v3.0.0.b3134"
   uuid: "redash-3.0.0-rancher"
   minimum_rancher_version: "v1.6.0"
@@ -52,6 +52,12 @@
       type: "string"
       default: "local,127.0.0.1"
 
+    - variable: "REDASH_HOST_PORT"
+      label: "REDASH_HOST_PORT"
+      description: "ReDash Server Port"
+      required: true
+      type: "int"
+      default: "5000"
     - variable: "REDASH_STATSD_HOST"
       label: "REDASH_STATSD_HOST"
       description: "Host name of StatsD of Graphite Client"
@@ -83,7 +89,7 @@
       required: true
       default: 8080
       type: "int"
-  
+
     - variable: "REDASH_DATE_FORMAT"
       label: "REDASH_DATE_FORMAT"
       description: "REDASH_DATE_FORMAT"
@@ -223,7 +229,7 @@
       type: "int"
 
     - variable: "VOLUME_DRIVER"
-      description: 
+      description:
        For PostgreSQL Volume driver to use with this service.
       label: "Volume driver"
       required: false
