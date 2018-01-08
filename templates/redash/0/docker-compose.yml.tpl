@@ -14,7 +14,7 @@ services:
     {{- end }}
       - redis
     ports:
-      - "5000:5000"
+      - "${REDASH_HOST_PORT}:5000"
     environment:
       TZ: ${MY_TIMEZONE}
     {{- if eq .Values.USE_HTTP_PROXY "true" }}

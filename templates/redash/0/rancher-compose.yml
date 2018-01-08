@@ -52,6 +52,12 @@
       type: "string"
       default: "local,127.0.0.1"
 
+    - variable: "REDASH_HOST_PORT"
+      label: "REDASH_HOST_PORT"
+      description: "ReDash Server Port"
+      required: true
+      type: "int"
+      default: "5000"
     - variable: "REDASH_STATSD_HOST"
       label: "REDASH_STATSD_HOST"
       description: "Host name of StatsD of Graphite Client"
