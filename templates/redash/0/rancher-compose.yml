@@ -62,10 +62,11 @@
 
     - variable: "REDASH_HOST_PORT"
       label: "REDASH_HOST_PORT"
-      description: "ReDash Server Port"
+      description: "Redash Server Port"
       required: true
       type: "int"
       default: "5000"
+
     - variable: "REDASH_STATSD_HOST"
       label: "REDASH_STATSD_HOST"
       description: "Host name of StatsD of Graphite Client"
@@ -87,7 +88,7 @@
 
     - variable: "REDASH_HOST"
       label: "REDASH_HOST"
-      description: "REDASH_HOST"
+      description: "ex) https://app.redash.io/name"
       required: true
       type: "string"
       default: "127.0.0.1"
@@ -106,13 +107,13 @@
       default: "YY/MM/DD"
     - variable: "REDASH_ALLOW_SCRIPTS_IN_USER_INPUT"
       label: "REDASH_ALLOW_SCRIPTS_IN_USER_INPUT"
-      description: "REDASH_ALLOW_SCRIPTS_IN_USER_INPUT"
+      description: "disable sanitization of text input, allowing full HTML"
       required: false
       type: "string"
       default: "false"
     - variable: "ALLOW_PARAMETERS_IN_EMBEDS"
       label: "ALLOW_PARAMETERS_IN_EMBEDS"
-      description: "ALLOW_PARAMETERS_IN_EMBEDS"
+      description: "With this option enabled, Redash reads query parameters from the request URL (risk of SQL injection!)"
       required: false
       type: "string"
       default: "false"
