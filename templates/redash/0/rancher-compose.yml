@@ -5,6 +5,14 @@
   uuid: "redash-3.0.0-rancher"
   minimum_rancher_version: "v1.6.0"
   questions:
+    - variable: REDASH_HOST_LABEL
+      label: "Host with Label to put redash on"
+      description: |
+        Host label to use as redash 'value' tag.
+        ex)'redash=true'
+      required: false
+      default: ""
+      type: "string"
     - variable: "USE_HTTP_PROXY"
       label: "Use HTTP_PROXY?"
       required: true

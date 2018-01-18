@@ -7,6 +7,7 @@ services:
       io.rancher.sidekicks: server-init
     {{- end }}
       io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: ${REDASH_HOST_LABEL}
     command: server
     depends_on:
     {{- if eq .Values.ADD_PG_CONTAINER "true" }}
@@ -49,6 +50,7 @@ services:
     image: redash/redash:${REDASH_IMAGE_VERSION}
     labels:
       io.rancher.container.start_once: true
+      io.rancher.scheduler.affinity:host_label: ${REDASH_HOST_LABEL}
     command: create_db
     depends_on:
     {{- if eq .Values.ADD_PG_CONTAINER "true" }}
@@ -91,6 +93,7 @@ services:
     image: redash/redash:${REDASH_IMAGE_VERSION}
     labels:
       io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: ${REDASH_HOST_LABEL}
     command: scheduler
     environment:
       TZ: ${MY_TIMEZONE}
@@ -123,8 +126,12 @@ services:
       REDASH_MAIL_DEFAULT_SENDER: ${REDASH_MAIL_DEFAULT_SENDER}
       REDASH_MAIL_ASCII_ATTACHMENTS: ${REDASH_MAIL_ASCII_ATTACHMENTS}
   redis:
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${REDASH_HOST_LABEL}
     image: redis:3.0-alpine
   nginx:
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${REDASH_HOST_LABEL}
     image: redash/nginx:latest
     ports:
       - "${REDAH_HTTP_PORT}:80"
@@ -138,6 +145,7 @@ services:
     image: postgres:9.6.6-alpine
     labels:
       io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: ${REDASH_HOST_LABEL}
     environment:
       TZ: ${MY_TIMEZONE}
       POSTGRES_USER: ${REDASH_DB_USER}
