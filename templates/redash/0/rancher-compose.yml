@@ -123,6 +123,12 @@
       required: false
       type: "string"
       default: "false"
+    - variable: "REDASH_MULTI_ORG"
+      label: "REDASH_MULTI_ORG"
+      description: "REDASH_MULTI_ORG"
+      required: false
+      type: "string"
+      default: "false"
 
     - variable: "REDASH_MAIL_SERVER"
       label: "REDASH_MAIL_SERVER"
