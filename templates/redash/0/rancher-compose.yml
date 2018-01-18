@@ -96,7 +96,7 @@
       description: "public port to access redash site"
       label: "Public Port"
       required: true
-      default: 8080
+      default: 8180
       type: "int"
 
     - variable: "REDASH_DATE_FORMAT"
@@ -234,7 +234,7 @@
       description: "public port to access pgAdmin4 site"
       label: "Public Port"
       required: true
-      default: 8180
+      default: 8280
       type: "int"
 
     - variable: "VOLUME_DRIVER"
