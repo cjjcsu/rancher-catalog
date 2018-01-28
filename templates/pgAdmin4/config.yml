@@ -1,8 +1,7 @@
-name: # Name of the Catalog Entry
+name: "pgAdmin4"
 description: |
-  # Description of the Catalog Entry
-version: # Version of the Catalog to be used
-category: # Category to be used for searching catalog entries
-maintainer: # The maintainer of the catalog entry
-license: # The license
-projectURL: # A URL related to the catalog entry
+  pgAdmin is administration and development platform for PostgreSQL.
+version: "0.1.0"
+category: "PostgreSQL"
+maintainer: "@yassan168"
+projectURL: https://www.pgadmin.org/

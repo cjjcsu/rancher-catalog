@@ -1,7 +1,81 @@
 .catalog:
-  name: # Name of the versioned template of the Catalog Entry
-  version: # Version of the versioned template of the Catalog Entry
-  description: # Description of the versioned template of the Catalog Entry
-  uuid: # Unique identifier to be used for upgrades. Please see note.
-  minimum_rancher_version: # The minimum version of Rancher that supports the template
-  questions: #Used to request user input for configuration options
+  name: "pgAdmin4"
+  version: "0.1.0"
+  description: "pgAdmin4 v2.X"
+  uuid: "pgadmin4-2.1-rnacher"
+  minimum_rancher_version: "v1.6.0"
+  questions:
+    - variable: "PGADMIN4_IMAGE_VERSION"
+      label: "pgAdmin4 container image Version"
+      description: "Specify a version of the pgAdmin4 container to pull (default will pull latest)."
+      required: true
+      type: "string"
+      default: "latest"
+
+    - variable: "PGADMIN_DEF_EMAIL"
+      label: "pgAdmin4 user name"
+      description: "pgAdmin4 user name(e-mail)"
+      required: true
+      type: "string"
+      default: "pgadmin4@pgadmin.org"
+    - variable: "PGADMIN_DEF_PW"
+      label: "pgAdmin4 user password"
+      description: "pgAdmin4 user password"
+      required: true
+      type: "string"
+      default: "admin"
+
+    - variable: "PGADMIN4_MAIL_SERVER"
+      label: "PGADMIN4_MAIL_SERVER"
+      description: "MAIL_SERVER"
+      required: false
+      type: "string"
+      default: "localhost"
+    - variable: "PGADMIN4_MAIL_PORT"
+      description: "MAIL_PORT"
+      label: "PGADMIN4_MAIL_PORT"
+      required: true
+      default: 25
+      type: "int"
+    - variable: "PGADMIN4_MAIL_USE_TLS"
+      label: "PGADMIN4_MAIL_USE_TLS"
+      description: "MAIL_USE_TLS"
+      required: false
+      type: "string"
+      default: "false"
+    - variable: "PGADMIN4_MAIL_USE_SSL"
+      label: "PGADMIN4_MAIL_USE_SSL"
+      description: "MAIL_USE_SSL"
+      required: false
+      type: "string"
+      default: "false"
+    - variable: "PGADMIN4_MAIL_USERNAME"
+      label: "PGADMIN4_MAIL_USERNAME"
+      description: "MAIL_USERNAME"
+      required: false
+      type: "string"
+      default: ""
+    - variable: "PGADMIN4_MAIL_PASSWORD"
+      label: "PGADMIN4_MAIL_PASSWORD"
+      description: "MAIL_PASSWORD"
+      required: false
+      type: "string"
+      default: ""
+
+    - variable: "PGADMIN_PUBLIC_PORT"
+      description: "public port to access pgAdmin4 site"
+      label: "Public Port"
+      required: true
+      default: 8280
+      type: "int"
+
+    - variable: "VOLUME_DRIVER"
+      description:
+       For pgAdmin4 Volume driver to use with this service.
+      label: "Volume driver"
+      required: false
+      default: "local"
+      type: enum
+      options:
+        - local
+        - rancher-nfs

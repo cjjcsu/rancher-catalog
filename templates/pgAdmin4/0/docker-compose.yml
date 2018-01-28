@@ -1,0 +1,28 @@
+version: '2'
+services:
+  pgadmin:
+    links:
+      - redashdb:redashdb:${PGADMIN4_IMAGE_VERSION}
+    image: dpage/pgadmin4
+    labels:
+      io.rancher.container.hostname_override: container_name
+    environment:
+      TZ: ${MY_TIMEZONE}
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEF_EMAIL}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEF_PW}"
+      PGADMIN4_MAIL_SERVER: "${PGADMIN4_MAIL_SERVER}"
+      PGADMIN4_MAIL_PORT: "${PGADMIN4_MAIL_PORT}"
+      PGADMIN4_MAIL_USE_TLS: "${PGADMIN4_MAIL_USE_TLS}"
+      PGADMIN4_MAIL_USE_SSL: "${PGADMIN4_MAIL_USE_SSL}"
+      PGADMIN4_MAIL_USERNAME: "${PGADMIN4_MAIL_USERNAME}"
+      PGADMIN4_MAIL_PASSWORD: "${PGADMIN4_MAIL_PASSWORD}"
+    volumes:
+       - pgadmin-data:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PUBLIC_PORT}:80"
+    restart: unless-stopped
+
+volumes:
+  pgadmin-data:
+    driver: ${VOLUME_DRIVER}
+    external: true
