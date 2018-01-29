@@ -1,0 +1,7 @@
+name: "pgAdmin4"
+description: |
+  pgAdmin is administration and development platform for PostgreSQL.
+version: "0.1.0"
+category: "PostgreSQL"
+maintainer: "@yassan168"
+projectURL: https://www.pgadmin.org/

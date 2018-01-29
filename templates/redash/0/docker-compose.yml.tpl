@@ -159,23 +159,6 @@ services:
     ports:
       - "5432:5432"
     restart: unless-stopped
-  pgadmin:
-    links:
-      - redashdb:redashdb
-    image: dpage/pgadmin4
-    labels:
-      io.rancher.container.hostname_override: container_name
-    environment:
-      TZ: ${MY_TIMEZONE}
-      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEF_EMAIL}"
-      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEF_PW}"
-    volumes:
-       - pgadmin-data:/root/.pgadmin
-    ports:
-      - "${PGADMIN_HTTP_PORT}:80"
-    restart: unless-stopped
-    depends_on:
-      - redashdb
 {{- end }}
 {{- if eq .Values.ADD_SAMPLE_DATASET "true" }}
   mysql:
@@ -189,9 +172,6 @@ services:
 {{- if eq .Values.ADD_PG_CONTAINER "true" }}
 volumes:
   redash-pgdata:
-    driver: ${VOLUME_DRIVER}
-    external: true
-  pgadmin-data:
     driver: ${VOLUME_DRIVER}
     external: true
 {{- end }}

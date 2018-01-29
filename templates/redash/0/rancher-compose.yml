@@ -224,25 +224,6 @@
       type: "string"
       default: "3.0.0.b3134"
 
-    - variable: "PGADMIN_DEF_EMAIL"
-      label: "pgAdmin4 user name"
-      description: "pgAdmin4 user name(e-mail)"
-      required: true
-      type: "string"
-      default: "admin@hoge.com"
-    - variable: "PGADMIN_DEF_PW"
-      label: "pgAdmin4 user password"
-      description: "pgAdmin4 user password"
-      required: true
-      type: "string"
-      default: "pass0000"
-    - variable: "PGADMIN_HTTP_PORT"
-      description: "public port to access pgAdmin4 site"
-      label: "Public Port"
-      required: true
-      default: 8280
-      type: "int"
-
     - variable: "VOLUME_DRIVER"
       description:
        For PostgreSQL Volume driver to use with this service.
