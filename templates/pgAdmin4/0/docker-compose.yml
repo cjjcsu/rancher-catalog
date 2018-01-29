@@ -1,9 +1,7 @@
 version: '2'
 services:
   pgadmin:
-    links:
-      - redashdb:redashdb:${PGADMIN4_IMAGE_VERSION}
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:${PGADMIN4_IMAGE_VERSION}
     labels:
       io.rancher.container.hostname_override: container_name
     environment:
