@@ -1,0 +1,8 @@
+name: Redmine
+description: |
+  Redmine is a flexible project management web application.
+version: "0.1.0"
+category: Project Management
+maintainer: "@yassan168"
+license: "Apache License 2.0"
+projectURL: https://github.com/yassan/rancher-catalog

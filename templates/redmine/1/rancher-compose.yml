@@ -1,0 +1,336 @@
+.catalog:
+  name: Redmine
+  version: 0.2.0
+  description: |
+    Redmine is a flexible project management web application.
+  uuid: "redmine-rancher"
+  minimum_rancher_version: "v1.6.0"
+  description: |
+    Redmine for email settings see the docs here http://www.redmine.org/projects/redmine/wiki/EmailConfiguration
+  questions:
+  - variable: "REDMINE_IMAGE_TAG"
+    label: "REDMINE_IMAGE_TAG"
+    description: "Redmine Docker Image Tag"
+    required: false
+    type: "string"
+    default: ""
+  - variable: "HTTP_PROXY"
+    label: "HTTP_PROXY"
+    description: "HTTP_PROXY"
+    required: false
+    type: "string"
+    default: ""
+  - variable: "HTTPS_PROXY"
+    label: "HTTPS_PROXY"
+    description: "HTTPS_PROXY"
+    required: false
+    type: "string"
+    default: ""
+  - variable: "NO_PROXY"
+    label: "NO_PROXY"
+    description: "NO_PROXY"
+    required: false
+    type: "string"
+    default: ""
+
+  - variable: "PORT"
+    label: "Public HTTP Port Number"
+    description: "Which public port should Redmine listen on?"
+    type: "int"
+    required: true
+    default: 10083
+  - variable: "TZ"
+    label: "Timezone"
+    description: "Timezone to use for the server"
+    required: true
+    default: "Asia/Tokyo"
+    type: "string"
+
+  - variable: "REDMINE_HTTPS"
+    label: "REDMINE_HTTPS"
+    description: "Enable HTTPS (SSL/TLS) port on server. Defaults to false"
+    required: false
+    default: "false"
+    type: "boolean"
+  - variable: "REDMINE_PORT"
+    label: "REDMINE_PORT"
+    description: "The port of the Redmine server. Defaults to 80 for plain http and 443 when https is enabled."
+    required: false
+    default: "80"
+    type: "int"
+  - variable: "REDMINE_RELATIVE_URL_ROOT"
+    label: "REDMINE_RELATIVE_URL_ROOT"
+    description: "The relative url of the Redmine server, e.g. /redmine. No default."
+    required: false
+    default: ""
+    type: "string"
+  - variable: "REDMINE_ATTACHMENTS_DIR"
+    label: "REDMINE_ATTACHMENTS_DIR"
+    description: "The attachments directory. Defaults to /home/redmine/data/files"
+    required: false
+    default: ""
+    type: "string"
+  - variable: "REDMINE_SECRET_TOKEN"
+    label: "REDMINE_SECRET_TOKEN"
+    description: "Secret key for verifying cookie session data integrity. Defaults to a random alphanumeric string."
+    required: true
+    default: ""
+    type: "password"
+  - variable: "REDMINE_CONCURRENT_UPLOADS"
+    label: "REDMINE_CONCURRENT_UPLOADS"
+    description: "Maximum number of simultaneous AJAX uploads. Defaults to 2."
+    required: false
+    default: "2"
+    type: "int"
+  - variable: "REDMINE_SUDO_MODE_ENABLED"
+    label: "REDMINE_SUDO_MODE_ENABLED"
+    description: "Requires users to re-enter their password for sensitive actions. Defaults to false."
+    required: false
+    default: "false"
+    type: "boolean"
+  - variable: "REDMINE_SUDO_MODE_TIMEOUT"
+    label: "REDMINE_SUDO_MODE_TIMEOUT"
+    description: "Sudo mode timeout. Defaults to 15 minutes."
+    required: false
+    default: "15"
+    type: "int"
+  - variable: "REDMINE_FETCH_COMMITS"
+    label: "REDMINE_FETCH_COMMITS"
+    description: |
+      Setup cron job to fetch commits. Possible values disable, hourly, daily or monthly. Disabled by default.
+    default: disable
+    required: true
+    type: enum
+    options:
+      - disable
+      - daily
+      - weekly
+      - monthly
+  - variable: "REDMINE_AUTOLOGIN_COOKIE_NAME"
+    label: "REDMINE_AUTOLOGIN_COOKIE_NAME"
+    description: |
+     The name of autologin-cookie. Defaults to autologin.
+    default: "autologin"
+    type: "string"
+  - variable: "REDMINE_AUTOLOGIN_COOKIE_PATH"
+    label: "REDMINE_AUTOLOGIN_COOKIE_PATH"
+    description: |
+     The path of autologin-cookie. Defaults to /.
+    default: "/"
+    type: "string"
+  - variable: "REDMINE_AUTOLOGIN_COOKIE_SECURE"
+    label: "REDMINE_AUTOLOGIN_COOKIE_SECURE"
+    description: |
+      Set autologin-cookie to secure. Defaults to true when REDMINE_HTTPS is true, else defaults to false.
+    required: false
+    default: "false"
+    type: "boolean"
+
+  - variable: "REDMINE_BACKUPS_DIR"
+    description: "REDMINE_BACKUPS_DIR"
+    label: |
+      The backup folder in the container. Defaults to /home/redmine/data/backups
+    required: false
+    default: ""
+    type: "string"
+  - variable: "REDMINE_BACKUP_SCHEDULE"
+    description: "REDMINE_BACKUP_SCHEDULE"
+    label: "REDMINE_BACKUP_SCHEDULE"
+    description: |
+      Setup cron job to schedule automatic backups. Possible values disable, daily, weekly or monthly. Disabled by default
+    default: disable
+    required: true
+    type: enum
+    options:
+      - disable
+      - daily
+      - weekly
+      - monthly
+  - variable: "REDMINE_BACKUP_EXPIRY"
+    label: "REDMINE_BACKUP_EXPIRY"
+    description: |
+      Configure how long (in seconds) to keep backups before they are deleted. 
+      By default when automated backups are disabled backups are kept forever (0 seconds),
+      else the backups expire in 7 days (604800 seconds).
+    required: false
+    default: ""
+    type: "int"
+  - variable: "REDMINE_BACKUP_TIME"
+    label: "REDMINE_BACKUP_TIME"
+    description: |
+      Set a time for the automatic backups in HH:MM format. Defaults to 04:00.
+    required: false
+    default: ""
+    type: "string"
+
+  - variable: "DB_ADAPTER"
+    label: "DB_ADAPTER"
+    description: "The database type. Possible values: mysql2, postgresql. Defaults to mysql."
+    required: true
+    default: "postgresql"
+    type: "string"
+  - variable: "DB_ENCODING"
+    label: "DB_ENCODING"
+    description: "The database encoding. For DB_ADAPTER values postresql and mysql2, this parameter defaults to unicode and utf8 respectively."
+    required: false
+    default: "utf8"
+    type: "string"
+  - variable: "DB_HOST"
+    label: "DB_HOST"
+    description: "The database server hostname. Defaults to localhost."
+    required: true
+    default: "postgresql"
+    type: "string"
+  - variable: "DB_PORT"
+    label: "DB_PORT"
+    description: "The database server port. Defaults to 5432."
+    required: true
+    default: "5432"
+    type: "int"
+  - variable: "DB_NAME"
+    label: "DB_NAME"
+    description: "The database name. Defaults to redmine_production"
+    required: true
+    default: "redmine_production"
+    type: "string"
+  - variable: "DB_USER"
+    label: "DB_USER"
+    description: "The database user. Defaults to root"
+    required: true
+    default: "redmine"
+    type: "string"
+  - variable: "DB_PASS"
+    label: "DB Pass"
+    description: "The database password. Defaults to no password"
+    required: true
+    default: ""
+    type: "password"
+  - variable: "DB_POOL"
+    label: "DB_POOL"
+    description: "The database connection pool count. Defaults to 5."
+    required: true
+    default: "5"
+    type: "int"
+
+  - variable: "SMTP_ENABLED"
+    label: "SMTP ENABLED"
+    description: |
+      Enable mail delivery via SMTP. 
+      Defaults to true if SMTP_USER is defined, else defaults to false.
+    required: true
+    default: "true"
+    type: "boolean"
+  - variable: "SMTP_DOMAIN"
+    label: "SMTP_DOMAIN"
+    description: "SMTP domain. Defaults to www.gmail.com"
+    required: false
+    default: ""
+    type: "string"
+  - variable: "SMTP_HOST"
+    label: "SMTP Host"
+    description: "SMTP server host. Defaults to smtp.gmail.com"
+    required: false
+    default: "10.4.2.9"
+    type: "string"
+  - variable: "SMTP_PORT"
+    label: "SMTP_PORT"
+    description: "SMTP server port. Defaults to 587."
+    required: false
+    default: "587"
+    type: "int"
+  - variable: "SMTP_USER"
+    label: "SMTP_USER"
+    description: "SMTP username."
+    required: false
+    default: ""
+    type: "string"
+  - variable: "SMTP_PASS"
+    label: "SMTP_PASS"
+    description: "SMTP password."
+    required: false
+    default: ""
+    type: "password"
+  - variable: "SMTP_METHOD"
+    label: "SMTP_METHOD"
+    description: "SMTP_METHOD"
+    required: false
+    default: "smtp"
+    type: "string"
+  - variable: "SMTP_OPENSSL_VERIFY_MODE"
+    label: "SMTP_OPENSSL_VERIFY_MODE"
+    description: |
+      SMTP openssl verification mode.
+      Accepted values are none, peer, client_once and fail_if_no_peer_cert.
+      SSL certificate verification is performed by default.
+    required: false
+    default: ""
+    type: "string"
+  - variable: "SMTP_STARTTLS"
+    label: "SMTP_STARTTLS"
+    description: "Enable STARTTLS. Defaults to true."
+    required: false
+    default: "false"
+    type: "boolean"
+  - variable: "SMTP_TLS"
+    label: "SMTP_TLS"
+    description: "Enable SSL/TLS. Defaults to false."
+    required: false
+    default: "false"
+    type: "boolean"
+  - variable: "SMTP_AUTHENTICATION"
+    label: "SMTP Authentication"
+    description: |
+      SMTP Authentication to use for the server[:login,nil,:plain,:cram_md5]
+    required: true
+    default: ":login"
+    type: "string"
+  - variable: "SMTP_CA_ENABLED"
+    label: "SMTP_CA_ENABLED"
+    description: |
+      Enable custom CA certificates for SMTP email configuration. Defaults to false.
+    required: false
+    default: "false"
+    type: "boolean"
+  - variable: "SMTP_CA_PATH"
+    label: "SMTP_CA_PATH"
+    description: |
+      Specify the ca_path parameter for SMTP email configuration
+      Defaults to /home/redmine/data/certs.
+    required: false
+    default: ""
+    type: "string"
+  - variable: "SMTP_CA_FILE"
+    label: "SMTP_CA_FILE"
+    description: |
+      Specify the ca_file parameter for SMTP email configuration.
+      Defaults to /home/redmine/data/certs/ca.crt.
+    required: false
+    default: ""
+    type: "string"
+
+  - variable: "USERMAP_UID"
+    label: "USERMAP_UID"
+    description: |
+      ID of user redmine inside container. Defaults to 1000.
+    required: false
+    default: ""
+    type: "int"
+  - variable: "USERMAP_GID"
+    label: "USERMAP_GID"
+    description: |
+      ID of group redmine inside container. Defaults to 1000.
+    required: false
+    default: ""
+    type: "int"
+
+  - variable: "VOLUME_DRIVER"
+    description: "The VOLUME driver to associate with this server"
+    label: "VOLUME Driver"
+    required: true
+    default: "local"
+    type: enum
+    options:
+      - local
+      - rancher-nfs
+      - rancher-efs
+      - rancher-ebs
