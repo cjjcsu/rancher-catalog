@@ -7,6 +7,8 @@ services:
       - redminedbdata:/var/lib/postgresql/data
     labels:
       io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: ${REDMINE_HOST_LABEL}
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
@@ -14,12 +16,16 @@ services:
       PGDATA: '/var/lib/postgresql/data'
   redmine-data-theme:
     image: 'yassan/redmine-data-theme'
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: ${REDMINE_HOST_LABEL}
     entrypoint: /bin/true
   redmine-init-theme:
     image: 'sameersbn/redmine:${REDMINE_IMAGE_TAG}'
     labels:
       io.rancher.container.start_once: true
       io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: ${REDMINE_HOST_LABEL}
     volumes_from:
       - redmine-data-theme
       - redminedata:/home/redmine/data
@@ -84,6 +90,7 @@ services:
     labels:
       io.rancher.sidekicks: postgresql,redmine-init-theme
       io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: ${REDMINE_HOST_LABEL}
     environment:
       TZ: ${TZ}
 

@@ -14,6 +14,14 @@
     required: false
     type: "string"
     default: ""
+  - variable: REDMINE_HOST_LABEL
+    label: "Host with Label to put redmine on"
+    description: |
+      Host label to use as redmine 'value' tag.
+      ex)'redmine=true'
+    required: false
+    default: ""
+    type: "string"
   - variable: "HTTP_PROXY"
     label: "HTTP_PROXY"
     description: "HTTP_PROXY"
