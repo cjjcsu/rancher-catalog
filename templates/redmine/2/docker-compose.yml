@@ -1,0 +1,218 @@
+version: '2'                                                                         
+services:
+  postgresql:
+    restart: always
+    image: postgres:9.6-alpine
+    volumes:
+      - redmine-db-data:/var/lib/postgresql/data
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: ${REDMINE_HOST_LABEL}
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+      PGDATA: '/var/lib/postgresql/data'
+  redmine-init-theme:
+    image: 'sameersbn/redmine:${REDMINE_IMAGE_TAG}'
+    labels:
+      io.rancher.container.start_once: true
+      io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: ${REDMINE_HOST_LABEL}
+    volumes:
+      - redmine-data-store:/srv/docker/redmine/redmine
+      - redmine-data:/home/redmine/data
+      - redmine-log:/var/log/redmine
+    command: install_themes
+    environment:
+      TZ: ${TZ}
+
+      HTTP_PROXY: ${HTTP_PROXY}
+      HTTPS_PROXY: ${HTTPS_PROXY}
+      NO_PROXY: ${NO_PROXY}
+ 
+      DB_ADAPTER: ${DB_ADAPTER}
+      DB_ENCODING: ${DB_ENCODING}  
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      DB_POOL: ${DB_POOL}
+  
+      REDMINE_HTTPS: ${REDMINE_HTTPS}
+      REDMINE_PORT: ${REDMINE_PORT}
+      REDMINE_RELATIVE_URL_ROOT: ${REDMINE_RELATIVE_URL_ROOT}
+      REDMINE_ATTACHMENTS_DIR: ${REDMINE_ATTACHMENTS_DIR}
+      REDMINE_SECRET_TOKEN: ${REDMINE_SECRET_TOKEN}
+      REDMINE_CONCURRENT_UPLOADS: ${REDMINE_CONCURRENT_UPLOADS}
+      REDMINE_SUDO_MODE_ENABLED: ${REDMINE_SUDO_MODE_ENABLED}
+      REDMINE_SUDO_MODE_TIMEOUT: ${REDMINE_SUDO_MODE_TIMEOUT}
+      REDMINE_FETCH_COMMITS: ${REDMINE_FETCH_COMMITS}
+      REDMINE_AUTOLOGIN_COOKIE_NAME: ${REDMINE_AUTOLOGIN_COOKIE_NAME}
+      REDMINE_AUTOLOGIN_COOKIE_PATH: ${REDMINE_AUTOLOGIN_COOKIE_PATH}
+      REDMINE_AUTOLOGIN_COOKIE_SECURE: ${REDMINE_AUTOLOGIN_COOKIE_SECURE}
+
+      REDMINE_BACKUPS_DIR: ${REDMINE_BACKUPS_DIR}
+      REDMINE_BACKUP_SCHEDULE: ${REDMINE_BACKUP_SCHEDULE}
+      REDMINE_BACKUP_EXPIRY: ${REDMINE_BACKUP_EXPIRY}
+      REDMINE_BACKUP_TIME: ${REDMINE_BACKUP_TIME}
+    
+      SMTP_ENABLED: ${SMTP_ENABLED}
+      SMTP_DOMAIN: ${SMTP_DOMAIN}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_METHOD: ${SMTP_METHOD}
+      SMTP_OPENSSL_VERIFY_MODE: ${SMTP_OPENSSL_VERIFY_MODE}
+      SMTP_STARTTLS: ${SMTP_STARTTLS}
+      SMTP_TLS: ${SMTP_TLS}
+      SMTP_AUTHENTICATION: ${SMTP_AUTHENTICATION}
+      SMTP_CA_ENABLED: ${SMTP_CA_ENABLED}
+      SMTP_CA_PATH: ${SMTP_CA_PATH}
+      SMTP_CA_FILE: ${SMTP_CA_FILE}
+
+      USERMAP_UID: ${USERMAP_UID}
+      USERMAP_GID: ${USERMAP_GID}
+  redmine-init-plugin:
+    image: 'sameersbn/redmine:${REDMINE_IMAGE_TAG}'
+    labels:
+      io.rancher.container.start_once: true
+      io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: ${REDMINE_HOST_LABEL}
+    volumes:
+      - redmine-data-store:/srv/docker/redmine/redmine
+      - redmine-data:/home/redmine/data
+      - redmine-log:/var/log/redmine
+    command: install_plugins
+    environment:
+      TZ: ${TZ}
+
+      HTTP_PROXY: ${HTTP_PROXY}
+      HTTPS_PROXY: ${HTTPS_PROXY}
+      NO_PROXY: ${NO_PROXY}
+ 
+      DB_ADAPTER: ${DB_ADAPTER}
+      DB_ENCODING: ${DB_ENCODING}  
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      DB_POOL: ${DB_POOL}
+  
+      REDMINE_HTTPS: ${REDMINE_HTTPS}
+      REDMINE_PORT: ${REDMINE_PORT}
+      REDMINE_RELATIVE_URL_ROOT: ${REDMINE_RELATIVE_URL_ROOT}
+      REDMINE_ATTACHMENTS_DIR: ${REDMINE_ATTACHMENTS_DIR}
+      REDMINE_SECRET_TOKEN: ${REDMINE_SECRET_TOKEN}
+      REDMINE_CONCURRENT_UPLOADS: ${REDMINE_CONCURRENT_UPLOADS}
+      REDMINE_SUDO_MODE_ENABLED: ${REDMINE_SUDO_MODE_ENABLED}
+      REDMINE_SUDO_MODE_TIMEOUT: ${REDMINE_SUDO_MODE_TIMEOUT}
+      REDMINE_FETCH_COMMITS: ${REDMINE_FETCH_COMMITS}
+      REDMINE_AUTOLOGIN_COOKIE_NAME: ${REDMINE_AUTOLOGIN_COOKIE_NAME}
+      REDMINE_AUTOLOGIN_COOKIE_PATH: ${REDMINE_AUTOLOGIN_COOKIE_PATH}
+      REDMINE_AUTOLOGIN_COOKIE_SECURE: ${REDMINE_AUTOLOGIN_COOKIE_SECURE}
+
+      REDMINE_BACKUPS_DIR: ${REDMINE_BACKUPS_DIR}
+      REDMINE_BACKUP_SCHEDULE: ${REDMINE_BACKUP_SCHEDULE}
+      REDMINE_BACKUP_EXPIRY: ${REDMINE_BACKUP_EXPIRY}
+      REDMINE_BACKUP_TIME: ${REDMINE_BACKUP_TIME}
+    
+      SMTP_ENABLED: ${SMTP_ENABLED}
+      SMTP_DOMAIN: ${SMTP_DOMAIN}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_METHOD: ${SMTP_METHOD}
+      SMTP_OPENSSL_VERIFY_MODE: ${SMTP_OPENSSL_VERIFY_MODE}
+      SMTP_STARTTLS: ${SMTP_STARTTLS}
+      SMTP_TLS: ${SMTP_TLS}
+      SMTP_AUTHENTICATION: ${SMTP_AUTHENTICATION}
+      SMTP_CA_ENABLED: ${SMTP_CA_ENABLED}
+      SMTP_CA_PATH: ${SMTP_CA_PATH}
+      SMTP_CA_FILE: ${SMTP_CA_FILE}
+
+      USERMAP_UID: ${USERMAP_UID}
+      USERMAP_GID: ${USERMAP_GID}
+  redmine:
+    image: 'sameersbn/redmine:${REDMINE_IMAGE_TAG}'
+    volumes:
+      - redmine-data-store:/srv/docker/redmine/redmine
+      - redmine-data:/home/redmine/data
+      - redmine-log:/var/log/redmine
+    labels:
+      io.rancher.sidekicks: postgresql,redmine-init-theme,redmine-init-plugin
+      io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: ${REDMINE_HOST_LABEL}
+    environment:
+      TZ: ${TZ}
+
+      HTTP_PROXY: ${HTTP_PROXY}
+      HTTPS_PROXY: ${HTTPS_PROXY}
+      NO_PROXY: ${NO_PROXY}
+ 
+      DB_ADAPTER: ${DB_ADAPTER}
+      DB_ENCODING: ${DB_ENCODING}  
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      DB_POOL: ${DB_POOL}
+  
+      REDMINE_HTTPS: ${REDMINE_HTTPS}
+      REDMINE_PORT: ${REDMINE_PORT}
+      REDMINE_RELATIVE_URL_ROOT: ${REDMINE_RELATIVE_URL_ROOT}
+      REDMINE_ATTACHMENTS_DIR: ${REDMINE_ATTACHMENTS_DIR}
+      REDMINE_SECRET_TOKEN: ${REDMINE_SECRET_TOKEN}
+      REDMINE_CONCURRENT_UPLOADS: ${REDMINE_CONCURRENT_UPLOADS}
+      REDMINE_SUDO_MODE_ENABLED: ${REDMINE_SUDO_MODE_ENABLED}
+      REDMINE_SUDO_MODE_TIMEOUT: ${REDMINE_SUDO_MODE_TIMEOUT}
+      REDMINE_FETCH_COMMITS: ${REDMINE_FETCH_COMMITS}
+      REDMINE_AUTOLOGIN_COOKIE_NAME: ${REDMINE_AUTOLOGIN_COOKIE_NAME}
+      REDMINE_AUTOLOGIN_COOKIE_PATH: ${REDMINE_AUTOLOGIN_COOKIE_PATH}
+      REDMINE_AUTOLOGIN_COOKIE_SECURE: ${REDMINE_AUTOLOGIN_COOKIE_SECURE}
+
+      REDMINE_BACKUPS_DIR: ${REDMINE_BACKUPS_DIR}
+      REDMINE_BACKUP_SCHEDULE: ${REDMINE_BACKUP_SCHEDULE}
+      REDMINE_BACKUP_EXPIRY: ${REDMINE_BACKUP_EXPIRY}
+      REDMINE_BACKUP_TIME: ${REDMINE_BACKUP_TIME}
+    
+      SMTP_ENABLED: ${SMTP_ENABLED}
+      SMTP_DOMAIN: ${SMTP_DOMAIN}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_METHOD: ${SMTP_METHOD}
+      SMTP_OPENSSL_VERIFY_MODE: ${SMTP_OPENSSL_VERIFY_MODE}
+      SMTP_STARTTLS: ${SMTP_STARTTLS}
+      SMTP_TLS: ${SMTP_TLS}
+      SMTP_AUTHENTICATION: ${SMTP_AUTHENTICATION}
+      SMTP_CA_ENABLED: ${SMTP_CA_ENABLED}
+      SMTP_CA_PATH: ${SMTP_CA_PATH}
+      SMTP_CA_FILE: ${SMTP_CA_FILE}
+
+      USERMAP_UID: ${USERMAP_UID}
+      USERMAP_GID: ${USERMAP_GID}
+
+    ports:
+      - "${PORT}:80"
+
+volumes:
+  redmine-data-store:
+    driver: ${VOLUME_DRIVER}
+    external: true
+  redmine-data:
+    driver: ${VOLUME_DRIVER}
+    external: true
+  redmine-log:
+    driver: ${VOLUME_DRIVER}
+    external: true
+  redmine-db-data:
+    driver: ${VOLUME_DRIVER}
+    external: true
