@@ -151,7 +151,7 @@ services:
       POSTGRES_PASSWORD: ${REDASH_DB_PW}
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --no-locale --data-checksums"
     volumes:
-      - redash-pgdata:/var/lib/postgresql/data
+      - /opt/redash/pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     restart: unless-stopped

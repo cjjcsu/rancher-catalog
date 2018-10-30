@@ -1,6 +1,6 @@
 name: "redash"
 description: |
   Connect to any data source, easily visualize and share data 
-version: "0.1.0"
+version: "0.1.1"
 category: "BI"
 maintainer: "@yassan168"
