@@ -14,8 +14,6 @@ services:
       - redashdb
     {{- end }}
       - redis
-    ports:
-      - "${REDASH_HOST_PORT}:5000"
     environment:
       TZ: ${MY_TIMEZONE}
     {{- if eq .Values.USE_HTTP_PROXY "true" }}
@@ -136,8 +134,6 @@ services:
     labels:
       io.rancher.scheduler.affinity:host_label: ${REDASH_HOST_LABEL}
     image: redash/nginx:latest
-    ports:
-      - "${REDAH_HTTP_PORT}:80"
     depends_on:
       - server
     links:
