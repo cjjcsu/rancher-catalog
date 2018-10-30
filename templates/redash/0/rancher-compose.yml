@@ -31,15 +31,15 @@
     - variable: "INIT_REDASH_DB"
       label: "Initialize the database"
       required: true
-      default: false
+      default: true
       type: boolean
 
     - variable: "MY_TIMEZONE"
       label: "TimeZone"
-      description: "Specify Timezone(default JST-9)"
+      description: "Specify Timezone(default CST-8)"
       required: false
       type: "string"
-      default: "JST-9"
+      default: "CST-8"
 
     - variable: "HTTP_PROXY"
       label: "HTTP_PROXY"
@@ -222,7 +222,7 @@
       description: "Specify a version of the redash container to pull (default will pull 3.0.0.b3134)."
       required: true
       type: "string"
-      default: "3.0.0.b3134"
+      default: "latest"
 
     - variable: "VOLUME_DRIVER"
       description:
